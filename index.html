@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coding Conf Ticket</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #1a002e, #000);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #form, #ticket {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 400px;
+      margin: 30px auto;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      background: orange;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #ticket {
+      display: none;
+    }
+
+    .ticket-box {
+      background: #2b1a40;
+      border: 1px solid #888;
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ticket-box::before, .ticket-box::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 40px;
+      background: #1a002e;
+      border-radius: 0 0 100% 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .ticket-box::before {
+      left: -10px;
+    }
+
+    .ticket-box::after {
+      right: -10px;
+    }
+
+    #ticketAvatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 10px 0;
+    }
+
+    .header-text {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-text">
+    Welcome to Coding Conf 2025
+  </div>
+
+  <div id="form">
+    <h1>Get Your Ticket</h1>
+    <input id="avatar" type="file">
+    <input id="name" type="text" placeholder="Full Name">
+    <input id="email" type="text" placeholder="Email Address">
+    <input id="github" type="text" placeholder="GitHub Username">
+    <button onclick="createTicket()">Generate Ticket</button>
+  </div>
+
+  <div id="ticket">
+    <h1>Congrats, <span id="ticketName"></span>!</h1>
+    <p>Your ticket is ready.</p>
+    <p>We emailed your ticket to <span id="ticketEmail"></span></p>
+
+    <div class="ticket-box">
+      <h2>Coding Conf</h2>
+      <p>Jan 31, 2025 / Austin, TX</p>
+      <img id="ticketAvatar" src="" alt="Avatar"><br>
+      <strong><span id="ticketName2"></span></strong><br>
+      <span id="ticketGit"></span>
+    </div>
+  </div>
+
+  <script>
+    function createTicket() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var github = document.getElementById("github").value;
+      var file = document.getElementById("avatar").files[0];
+
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("github", github);
+
+      document.getElementById("form").style.display = "none";
+      document.getElementById("ticket").style.display = "block";
+
+      document.getElementById("ticketName").innerText = name;
+      document.getElementById("ticketName2").innerText = name;
+      document.getElementById("ticketEmail").innerText = email;
+      document.getElementById("ticketGit").innerText = "@" + github;
+
+      
+    }
+  </script>
+</body>
+</html>
