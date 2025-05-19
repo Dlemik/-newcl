@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Coding Conf Ticket</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <style>
     body {
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      background: radial-gradient(circle at top, #1a002e, #000);
+      background-image: url(/assets/images/background-desktop.png);
       color: white;
       text-align: center;
       padding: 60px 20px;
@@ -50,33 +53,19 @@
     }
 
     .ticket-box {
-      background: #2b1a40;
-      border: 1px solid #888;
+      background-image: url(assets/images/pattern-ticket.svg);
+      background-size: cover;
+      background-position: center;
       border-radius: 20px;
       padding: 20px;
       margin-top: 20px;
       position: relative;
       overflow: hidden;
+      max-width: 400px;
+      margin: 20px auto;
     }
 
-    .ticket-box::before, .ticket-box::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 40px;
-      background: #1a002e;
-      border-radius: 0 0 100% 100%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
 
-    .ticket-box::before {
-      left: -10px;
-    }
-
-    .ticket-box::after {
-      right: -10px;
-    }
 
     #ticketAvatar {
       width: 60px;
@@ -87,18 +76,35 @@
     }
 
     .header-text {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
       margin-top: 40px;
       margin-bottom: 10px;
     }
+
+    .small {
+      color: gray;
+    }
+
+    #form input {
+      background: radial-gradient( #1e0133, #0f0142);
+      color: white;
+    }
+
+    
   </style>
 </head>
 <body>
-
-  <div class="header-text">
-    Welcome to Coding Conf 2025
+  <div class="texts">
+    <img src="/assets/images/logo-full.svg" alt="">
+    <div class="header-text">
+    Your Journey to Coding Conf<br>2025 Starts Here!
   </div>
+  <div class="small">
+    <p>Secure your spot at next year's biggest coding conference.</p>
+  </div>
+  </div>
+  
 
   <div id="form">
     <h1>Get Your Ticket</h1>
@@ -115,11 +121,19 @@
     <p>We emailed your ticket to <span id="ticketEmail"></span></p>
 
     <div class="ticket-box">
-      <h2>Coding Conf</h2>
-      <p>Jan 31, 2025 / Austin, TX</p>
-      <img id="ticketAvatar" src="" alt="Avatar"><br>
-      <strong><span id="ticketName2"></span></strong><br>
-      <span id="ticketGit"></span>
+      <div class="logo" style="display: flex; gap: 10px;">
+        <img src="/assets/images/logo-mark.svg" alt="">
+        <h2>Coding Conf</h2>
+      </div>
+       <p style="text-align: start; font-size: 12px; color: gray;">Jan 31, 2025 / Austin, TX</p>
+      <div class="together" style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
+        <img id="ticketAvatar" src="" alt="Avatar" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover;">
+
+        <div class="info" style="display: flex; flex-direction: column; align-items: flex-start;">
+          <strong style="font-size: 18px;" id="ticketName2"></strong>
+          <span id="ticketGit" style="color: gray; font-size: 14px;"></span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -142,8 +156,35 @@
       document.getElementById("ticketEmail").innerText = email;
       document.getElementById("ticketGit").innerText = "@" + github;
 
+        function createTicket() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var github = document.getElementById("github").value;
+      var file = document.getElementById("avatar").files[0];
+
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("github", github);
+
+      document.getElementById("form").style.display = "none";
+      document.getElementById("ticket").style.display = "block";
+
+      document.getElementById("ticketName").innerText = name;
+      document.getElementById("ticketName2").innerText = name;
+      document.getElementById("ticketEmail").innerText = email;
+      document.getElementById("ticketGit").innerText = "@" + github;
+
       
     }
+
+     if (file) {
+      document.getElementById("ticketAvatar").src = URL.createObjectURL(file);
+    }
+
+    }
+
+     
+    
   </script>
 </body>
 </html>
