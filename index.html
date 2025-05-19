@@ -138,25 +138,7 @@
   </div>
 
   <script>
-    function createTicket() {
-      var name = document.getElementById("name").value;
-      var email = document.getElementById("email").value;
-      var github = document.getElementById("github").value;
-      var file = document.getElementById("avatar").files[0];
-
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("github", github);
-
-      document.getElementById("form").style.display = "none";
-      document.getElementById("ticket").style.display = "block";
-
-      document.getElementById("ticketName").innerText = name;
-      document.getElementById("ticketName2").innerText = name;
-      document.getElementById("ticketEmail").innerText = email;
-      document.getElementById("ticketGit").innerText = "@" + github;
-
-        function createTicket() {
+      function createTicket() {
       var name = document.getElementById("name").value;
       var email = document.getElementById("email").value;
       var github = document.getElementById("github").value;
@@ -175,8 +157,6 @@
       document.getElementById("ticketGit").innerText = "@" + github;
 
       
-    }
-
      if (file) {
       document.getElementById("ticketAvatar").src = URL.createObjectURL(file);
     }
